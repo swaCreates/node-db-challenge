@@ -19,19 +19,15 @@ function create(newProject){
 };
 
 function getResources(pj_id){
-    return db.select('name', 'resource_description')
-        .from('Project_Task')
-        .join('Resource', 'Resource.id', 'Project_Task.res_id')
-        .where('Project_Task.pj_id', pj_id);
+    return db.select('name', 'resource_desc')
+        .from('Project_Plan')
+        .join('Resource', 'Resource.id', 'Project_Plan.res_id')
+        .where('Project_Plan.pj_id', pj_id);
 };
 
 function addResource(newResrc, pj_id){
-    return db.select('name', 'resource_description')
-        .from('Resource')
+    return db('Resource')
         .insert(newResrc)
-        .join('Project_Task', 'Project_Task.res_id', 'Resource.id')
-        .join('Project', 'Project.id', 'Project_Task.id')
-        .where('Project_Task.pj_id', pj_id);
 };
 
 function getTasks(pj_id){

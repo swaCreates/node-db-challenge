@@ -7,11 +7,11 @@ exports.seed = function(knex) {
       return knex('Project').insert([
         {
           pj_name: 'db-challenge',
-          pj_description: 'complete the db sprint',
+          pj_desc: 'complete the db sprint',
         },
         {
           pj_name: 'muffler delete',
-          pj_description: 'have my mufflers removed',
+          pj_desc: 'have my mufflers removed',
         },
       ]);
     });

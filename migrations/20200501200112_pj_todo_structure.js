@@ -4,42 +4,44 @@ exports.up = function(knex) {
     .createTable('Project', tbl => {
         tbl.increments();
         tbl.text('pj_name', 128).notNullable();
-        tbl.text('pj_description', 128);
+        tbl.text('pj_desc', 128);
         tbl.boolean('completed').notNullable().defaultTo(false);
     })
     .createTable('Resource', tbl => {
         tbl.increments();
         tbl.text('name', 128).notNullable().unique();
-        tbl.text('resource_description', 128);
+        tbl.text('resource_desc', 128);
     })
     .createTable('Task', tbl => {
         tbl.increments();
-        tbl.text('task_description', 128).notNullable();
-        tbl.text('notes', 128);
-        tbl.boolean('completed').notNullable().defaultTo(false);
-    })
-    .createTable('Project_Task', tbl => {
         tbl.integer('pj_id')
         .unsigned()
         .notNullable()
         .references('id')
         .inTable('Project');
-        tbl.integer('task_id')
+        tbl.text('task_desc', 128).notNullable();
+        tbl.text('notes', 128);
+        tbl.boolean('completed').notNullable().defaultTo(false);
+    })
+    .createTable('Project_Plan', tbl => {
+        tbl.integer('pj_id')
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('Task');
+        .inTable('Project')
+        .onDelete('CASCADE');
         tbl.integer('res_id')
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('Resource');
+        .inTable('Resource')
+        .onDelete('CASCADE');
     })
 };
 
 exports.down = function(knex) {
     return knex.schema
-    .dropTableIfExists('Project_Task')
+    .dropTableIfExists('Project_Plan')
     .dropTableIfExists('Task')
     .dropTableIfExists('Resource')
     .dropTableIfExists('Project');

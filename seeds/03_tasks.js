@@ -6,18 +6,22 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('Task').insert([
         {
-          task_description: 'use my notes, the internet, and my knowledge of relational dbs to complete this project',
+          pj_id: 1,
+          task_desc: 'use my notes, the internet, and my knowledge of relational dbs to complete this project',
           notes: 'take my time',
         },
         {
-          task_description: 'make sure my laptop is charged',
+          pj_id: 1,
+          task_desc: 'make sure my laptop is charged',
         },
         {
-          task_description: 'contact the nearest mechanic shop',
+          pj_id: 2,
+          task_desc: 'contact the nearest mechanic shop',
           notes: 'find the lowest price'
         },
         {
-          task_description: 'check ratings of the shop',
+          pj_id: 2,
+          task_desc: 'check ratings of the shop',
           notes: 'make sure the shop does a good job'
         },
       ]);

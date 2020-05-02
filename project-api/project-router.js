@@ -41,7 +41,7 @@ router.post('/:id/resources', async (req, res, next) => {
     try {
         const payload= {
             name: req.body.name,
-            resource_description: req.body.resource_description
+            resource_desc: req.body.resource_desc
         }
 
         const newResrc= await db.addResource(payload, req.params.id);
