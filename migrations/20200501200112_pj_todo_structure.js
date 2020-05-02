@@ -23,17 +23,17 @@ exports.up = function(knex) {
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('Projects');
+        .inTable('Project');
         tbl.integer('task_id')
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('Tasks');
+        .inTable('Task');
         tbl.integer('res_id')
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('Resources');
+        .inTable('Resource');
     })
 };
 
