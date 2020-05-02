@@ -25,6 +25,16 @@ exports.seed = function(knex) {
           res_id: 4,
           task_id: 4
         },
+        {
+          pj_id: 2,
+          res_id: 2,
+          task_id: 4
+        },
+        {
+          pj_id: 2,
+          res_id: 1,
+          task_id: 4
+        },
       ]);
     });
 };
