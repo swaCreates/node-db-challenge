@@ -14,14 +14,14 @@ exports.up = function(knex) {
     })
     .createTable('Task', tbl => {
         tbl.increments();
+        tbl.text('task_desc', 128).notNullable();
+        tbl.text('notes', 128);
+        tbl.boolean('completed').notNullable().defaultTo(false)
         tbl.integer('pj_id')
         .unsigned()
         .notNullable()
         .references('id')
         .inTable('Project');
-        tbl.text('task_desc', 128).notNullable();
-        tbl.text('notes', 128);
-        tbl.boolean('completed').notNullable().defaultTo(false);
     })
     .createTable('Project_Plan', tbl => {
         tbl.integer('pj_id')

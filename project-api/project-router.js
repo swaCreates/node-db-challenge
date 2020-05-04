@@ -60,4 +60,39 @@ router.post('/:id/resources', async (req, res, next) => {
     };
 });
 
+// GET tasks
+router.get('/:id/tasks', async (req, res, next) => {
+    try {
+        const tasks= await db.getTasks(req.params.id);
+        res.json(tasks);
+    } catch (err) {
+        console.log('Error getting tasks:', err);
+        next(err);
+    }
+})
+
+// CREATE task
+router.post('/:id/tasks', async (req, res, next) => {
+    try {
+        const payload= {
+            task_desc: req.body.task_desc,
+            notes: req.body.notes,
+            pj_id: req.params.id // task.pj_id cannot be nullable (inquire how to change that)
+        }
+
+        const newTask= await db.addTask(payload, req.params.id);
+
+        if(req.params.id){
+            res.status(201).json(newTask);
+        } else{
+            res.status(404).json({
+                message: 'Invalid id or post does not exist'
+            });
+        }
+    } catch (err) {
+        console.log('Error creating task:', err);
+        next(err);
+    }
+})
+
 module.exports= router;
